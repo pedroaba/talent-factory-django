@@ -1,0 +1,27 @@
+{% load static %}
+{% block extraHead %}
+    <link rel="stylesheet" href="{% static 'css/navbar.css' %}">
+{% endblock %}
+
+<nav class="navbar p-4 flex justify-between">
+    <a href="{% url 'home' %}">
+        <img src="{% static 'images/logo.png' %}" alt="">
+    </a>
+    <div class="flex gap-3 items-center">
+        <a class="border-b-2 border-app-gray-400 {% if context.carType == 'new' %}border-b-black font-bold{% endif %}" id="new" href="{% url 'cars-list' %}?carType=new">NEW</a>
+        <span class="mb-2">|</span>
+        <a class="border-b-2 border-app-gray-400 {% if context.carType == 'pre-made' %}border-b-black font-bold{% endif %}" id="pre" href="{% url 'cars-list' %}?carType=pre-made">PRE-MADE</a>
+        <span class="mb-2">|</span>
+        <a class="border-b-2 border-app-gray-400 {% if context.carType == 'promotional' %}border-b-black font-bold{% endif %}" id="promotional" href="{% url 'cars-list' %}?carType=promotional">PROMOTIONAL</a>
+        <span class="mb-2">|</span>
+        <a>SELL YOUR CAR</a>
+        <span class="mb-2">|</span>
+        <a>CONTACT</a>
+    </div>
+    <div class="flex gap-2 items-center">
+        <i class="bi bi-instagram text-app-blue-500"></i>
+        <i class="bi bi-facebook text-app-blue-500"></i>
+        <i class="bi bi-linkedin text-app-blue-500"></i>
+        <i class="bi bi-whatsapp text-app-blue-500"></i>
+    </div>
+</nav>
