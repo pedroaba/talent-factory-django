@@ -8,11 +8,11 @@
         <img src="{% static 'images/logo.png' %}" alt="">
     </a>
     <div class="flex gap-3 items-center">
-        <a class="border-b-2 border-app-gray-400 {% if context.carType == 'new' %}border-b-black font-bold{% endif %}" id="new" href="{% url 'cars-list' %}?carType=new">NEW</a>
+        <a class="border-b-2 border-app-gray-400 {% if context.situation == 'new' %}border-b-black font-bold{% endif %}" id="new" href="{% url 'cars-list' %}?situation=new">NEW</a>
         <span class="mb-2">|</span>
-        <a class="border-b-2 border-app-gray-400 {% if context.carType == 'pre-made' %}border-b-black font-bold{% endif %}" id="pre" href="{% url 'cars-list' %}?carType=pre-made">PRE-MADE</a>
+        <a class="border-b-2 border-app-gray-400 {% if context.situation == 'pre-made' %}border-b-black font-bold{% endif %}" id="pre" href="{% url 'cars-list' %}?situation=pre-made">PRE-MADE</a>
         <span class="mb-2">|</span>
-        <a class="border-b-2 border-app-gray-400 {% if context.carType == 'promotional' %}border-b-black font-bold{% endif %}" id="promotional" href="{% url 'cars-list' %}?carType=promotional">PROMOTIONAL</a>
+        <a class="border-b-2 border-app-gray-400 {% if context.situation == 'promotional' %}border-b-black font-bold{% endif %}" id="promotional" href="{% url 'cars-list' %}?situation=promotional">PROMOTIONAL</a>
         <span class="mb-2">|</span>
         <a>SELL YOUR CAR</a>
         <span class="mb-2">|</span>

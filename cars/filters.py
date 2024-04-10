@@ -35,6 +35,16 @@ class CarFilter(django_filters.FilterSet):
             }
         )
     )
+    situation = django_filters.CharFilter(
+        lookup_expr='exact',
+        widget=forms.TextInput(
+            attrs={
+                'class': 'bg-app-gray-400 rounded-none px-3 placeholder:font-semibold placeholder:font-roboto '
+                         'placeholder:text-app-blue-300 py-1 placeholder:text-sm hidden',
+                'placeholder': 'INPUT THE BRAND'
+            }
+        )
+    )
 
     class Meta:
         model = Car

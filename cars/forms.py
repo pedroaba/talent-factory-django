@@ -1,3 +1,5 @@
+from uuid import uuid4
+
 from django import forms
 
 from cars.models import Car
@@ -13,6 +15,17 @@ class CarsForms(forms.ModelForm):
     CAR_TYPE_CHOICES = (
         ('AUTOMATIC', 'AUTOMATIC'),
         ('MANUAL', 'MANUAL'),
+    )
+
+    car_id = forms.CharField(
+        widget=forms.TextInput(
+            attrs={
+                'class': 'bg-app-gray-400 rounded-none px-3 placeholder:font-semibold placeholder:font-roboto '
+                         'placeholder:text-app-blue-300 py-1 placeholder:text-sm hidden',
+                'placeholder': 'INPUT THE BRAND',
+                'readonly': True
+            }
+        )
     )
 
     brand = forms.CharField(
@@ -127,9 +140,25 @@ class CarsForms(forms.ModelForm):
         )
     )
 
+    situation = forms.CharField(
+        widget=forms.TextInput(
+            attrs={
+                'class': 'bg-app-gray-400 rounded-none px-3 placeholder:font-semibold placeholder:font-roboto '
+                         'placeholder:text-app-blue-300 py-2 placeholder:text-sm w-full hidden',
+                'placeholder': 'DESCRIBE THE MAIN INFORMATION ABOUT THE CAR'
+            }
+        )
+    )
+
     photo_car = forms.ImageField()
 
     class Meta:
         model = Car
         fields = '__all__'
-        exclude = ('car_id',)
+
+    def __init__(self, detail: bool = False, *args, **kwargs):
+        super(CarsForms, self).__init__(*args, **kwargs)
+
+        if detail:
+            for _, field in self.fields.items():
+                field.widget.attrs["disabled"] = True

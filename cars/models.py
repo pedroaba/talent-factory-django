@@ -26,4 +26,24 @@ class Car(models.Model):
     version = models.CharField(max_length=24)
     model = models.CharField(max_length=20, blank=True, null=True)
 
+    situation = models.CharField(max_length=20, default="new")
+
     photo_car = models.ImageField(upload_to='photos/')
+
+    def to_dict(self):
+        return {
+            "car_id": str(self.car_id),
+            "brand": self.brand,
+            "car_year": self.car_year,
+            "color": self.color,
+            "description": self.description,
+            "fuel": self.fuel,
+            "kilometers": self.kilometers,
+            "motor_detail": self.motor_detail,
+            "car_type": self.car_type,
+            "price": self.price,
+            "version": self.version,
+            "model": self.model,
+            "situation": self.situation,
+            "photo_car": self.photo_car,
+        }

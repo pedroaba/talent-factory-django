@@ -1,12 +1,7 @@
 $(document).ready(function () {
-    function formatFileSizeInMb(filesize) {
-        const fileSizeInMb = filesize / (1024 * 1024);
-        const roundedFileSizeInMb = fileSizeInMb.toFixed(2);
+    const fileInput = $("#id_photo_car")
 
-        return roundedFileSizeInMb + " MB";
-    }
-
-    $("#id_photo").on("change", function (event) {
+    fileInput.on("change", function (event) {
         const files = event.target.files
 
         $("#file").remove()
