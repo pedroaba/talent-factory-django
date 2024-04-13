@@ -1,0 +1,31 @@
+version: '3.9'
+
+services:
+  app:
+    build: .
+    container_name: talent-application
+    ports:
+      - "8000:8000"
+    depends_on:
+      - postgres
+    networks:
+      - db
+    entrypoint: ["sh", "run-application.sh"]
+
+  postgres:
+    image: bitnami/postgresql
+    hostname: database
+    container_name: talent
+    ports:
+      - "5432:5432"
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: docker
+      POSTGRES_DB: talent
+    volumes:
+      - ./data/pg:/data/postgres
+    networks:
+      - db
+
+networks:
+  db:
