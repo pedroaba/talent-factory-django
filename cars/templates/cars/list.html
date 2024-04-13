@@ -9,17 +9,28 @@
 
 {% block mainContent %}
     <div class="w-screen h-[calc(100vh-84px)] pt-8 p-12 space-y-4 pb-10">
-        <h1 class="text-app-blue-500 text-2xl font-bold">{{ context.titleOfPage }} LUXURY CARS FOR SALE</h1>
+        <h1 class="text-app-blue-500 text-2xl font-bold">
+            {% if context.situation == 'sell-your-car' %}
+                CAR FOR SELLING LIST
+            {% else %}
+                {{ context.titleOfPage }} LUXURY CARS FOR SALE
+            {% endif %}
+        </h1>
         <form id="filter-form" class="flex items-center justify-between w-full">
             <div class="flex items-center gap-8">
                 {{ context.filter.form.as_p }}
             </div>
             <div class="flex items-center gap-6">
                 <a class="px-4 py-2 rounded-none font-bold text-white bg-app-red-500 text-sm">EXPORT</a>
-                <a href="{% url 'cars-create' %}?situation={{ context.situation }}" class="px-4 py-2 rounded-none font-bold text-white bg-app-blue-500 text-sm">+ ADD NEW CAR</a>
+                <a href="{% url 'cars-create' %}?situation={{ context.situation }}" class="px-4 py-2 rounded-none font-bold text-white bg-app-blue-500 text-sm">
+                    + ADD NEW CAR {% if context.situation == 'sell-your-car' %} TO SELL {% endif %}
+                </a>
             </div>
         </form>
-        <div class="flex flex-wrap gap-10">
+        {% if context.situation == 'sell-your-car' %}
+            <div></div>
+        {% else %}
+            <div class="flex flex-wrap gap-10">
             {% for car in context.filter.qs %}
                 <div  id="delete-modal-{{ car.car_id }}" class="blocker hidden">
                     <div class="modal p-4">
@@ -56,6 +67,7 @@
                 </div>
             {% endfor %}
         </div>
+        {% endif %}
     </div>
 {% endblock mainContent %}
 

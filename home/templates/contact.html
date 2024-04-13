@@ -1,0 +1,36 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block extraHead %}
+    <link rel="stylesheet" href="{% static 'cars/css/filter-form.css' %}">
+{% endblock extraHead %}
+
+{% block mainContent %}
+    <div class="w-screen h-[calc(100vh-84px)] pt-8 p-12 pb-10">
+        <h1 class="text-app-blue-500 text-2xl font-bold">
+            FILL THE FORM BELLOW TO SELL YOUR CAR
+        </h1>
+        <div class="flex items-center justify-between mt-24">
+            <form id="filter-form" class="flex items-center justify-between w-full" action="{% url 'contact' %}" method="post">
+                {% csrf_token %}
+                <div class="flex gap-8 flex-col items-start justify-start">
+                    {{ context.form.as_p }}
+                    <button type="submit" class="px-10 py-2 rounded-none font-bold text-white bg-app-blue-500 text-sm">REGISTER</button>
+                </div>
+            </form>
+            <div class="flex flex-col w-full items-end space-y-8 justify-start">
+                <img src="{% static 'images/logo@2x.png' %}" alt="">
+                <div class="text-right">
+                    <p class="w-full text-[#757575] font-bold">
+                        CONTATO@BRSC.COM.BR<br>
+                        (35) 9 9998-5522<br>
+                        <br>
+                        RUA JOSÉ CAPISTRANO, Nº 680 - CENTRO<br>
+                        SANTA RITA DO SAPUCAÍ - MG<br>
+                        37480-000
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock mainContent %}

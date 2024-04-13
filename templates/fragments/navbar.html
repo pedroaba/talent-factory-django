@@ -14,9 +14,7 @@
         <span class="mb-2">|</span>
         <a class="border-b-2 border-app-gray-400 {% if context.situation == 'promotional' %}border-b-black font-bold{% endif %}" id="promotional" href="{% url 'cars-list' %}?situation=promotional">PROMOTIONAL</a>
         <span class="mb-2">|</span>
-        <a>SELL YOUR CAR</a>
-        <span class="mb-2">|</span>
-        <a>CONTACT</a>
+        <a class="border-b-2 border-app-gray-400 {% if context.situation == 'contact' %}border-b-black font-bold{% endif %}" id="contact" href="{% url 'contact' %}">CONTACT</a>
     </div>
     <div class="flex gap-2 items-center">
         <i class="bi bi-instagram text-app-blue-500"></i>

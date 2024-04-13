@@ -35,6 +35,17 @@ class CarsCreateView(View):
                 f"{reverse('cars-list')}?situation={request.POST.get('situation')}"
             )
 
+        return render(request, "cars/form.html", {
+            "extraHeadContext": {
+                "title": "Cars Create"
+            },
+            "context": {
+                "situation": request.GET.get("situation"),
+                "titleOfPage": request.GET.get("situation", "").upper(),
+                "form": create_form
+            }
+        })
+
     def get(self, request):
         create_form = CarsForms(
             initial={
